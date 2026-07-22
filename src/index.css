@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* Premium dark palette — shared across the Custom Digital Services free
+     tools (convertisseur-local reference). Dark-only design: no light variant. */
+  --color-bg: #0b0b0d;
+  --color-panel: #0f0f11;
+  --color-panel-2: #131316;
+  --color-line: rgba(255, 255, 255, 0.07);
+  --color-line-strong: rgba(255, 255, 255, 0.12);
+  --color-txt: #f4f4f5;
+  --color-muted: #9b9ba3;
+  --color-faint: #5b5b63;
+  --color-orange: #ff6b00;
+  --color-orange-mid: #ff8c33;
+  --color-orange-light: #ffb066;
+  --color-orange-soft: rgba(255, 107, 0, 0.14);
+  --color-green: #7fd6a8;
+  --color-red: #ff8f8f;
+  --color-blue: #9cc4ff;
+  --color-violet: #c7a6ff;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Bespoke multi-stop / radial gradients the Tailwind from/via/to utilities
+ * cannot express (more than 3 stops, explicit angles). Kept as real
+ * stylesheet rules loaded under `style-src 'self'` — never as inline
+ * `style="..."` attributes, which the strict CSP's `style-src-attr`
+ * directive does not universally allow (Safari has no support for it).
+ */
+.hero-halo::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 130%;
+  background: radial-gradient(52% 42% at 50% 8%, rgba(255, 107, 0, 0.16), transparent 62%);
+  pointer-events: none;
+}
+
+.dropzone-border {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 107, 0, 0.55),
+    rgba(255, 107, 0, 0.08) 38%,
+    rgba(255, 255, 255, 0.06) 62%,
+    rgba(255, 107, 0, 0.3)
+  );
+}
+
+.dropzone-border-active {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 107, 0, 0.85),
+    rgba(255, 107, 0, 0.2) 38%,
+    rgba(255, 255, 255, 0.1) 62%,
+    rgba(255, 107, 0, 0.55)
+  );
+}
+
+.dropzone-inner-glow {
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(255, 107, 0, 0.07), transparent 55%),
+    var(--color-panel);
+}
+
+/*
+ * Checkerboard backdrop for previewing transparency (the whole point of a
+ * background remover). Rendered behind a PNG-with-alpha so the removed area
+ * reads as truly transparent rather than black.
+ */
+.alpha-checkerboard {
+  background-color: #1a1a1d;
+  background-image:
+    linear-gradient(45deg, #26262b 25%, transparent 25%),
+    linear-gradient(-45deg, #26262b 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #26262b 75%),
+    linear-gradient(-45deg, transparent 75%, #26262b 75%);
+  background-size: 18px 18px;
+  background-position:
+    0 0,
+    0 9px,
+    9px -9px,
+    -9px 0;
+}

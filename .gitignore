@@ -1,0 +1,12 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+*.log
+.env
+.env.*
+
+# ONNX weights are large (model_fp16.onnx ~109 MiB) — kept out of git and
+# re-fetched with `npm run fetch:model` (scripts/fetch-model.mjs). The small
+# config.json / preprocessor_config.json stay versioned so the layout is intact.
+public/models/**/*.onnx
